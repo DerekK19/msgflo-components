@@ -77,7 +77,7 @@ public class BKCentral: BKPeer, BKCBCentralManagerStateDelegate, BKConnectionPoo
             if #available(iOS 10.0, *) {
                 return BKAvailability(centralState: centralManager.state)
             } else {
-                return BKAvailability(centralManagerState: CBCentralManagerState(rawValue: centralManager.state.rawValue)!)
+                return BKAvailability(centralManagerState: CBManagerState(rawValue: centralManager.state.rawValue)!)
             }
         } else {
             return nil
@@ -343,7 +343,7 @@ public class BKCentral: BKPeer, BKCBCentralManagerStateDelegate, BKConnectionPoo
                 if #available(iOS 10.0, *) {
                     newCause = BKUnavailabilityCause(centralState: central.state)
                 } else {
-                    newCause = BKUnavailabilityCause(centralManagerState: CBCentralManagerState(rawValue: central.state.rawValue)!)
+                    newCause = BKUnavailabilityCause(centralManagerState: CBManagerState(rawValue: central.state.rawValue)!)
                 }
 
                 switch stateMachine.state {
