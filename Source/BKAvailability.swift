@@ -47,13 +47,16 @@ public enum BKAvailability: Equatable {
     case available
     case unavailable(cause: BKUnavailabilityCause)
 
-    @available(iOS 10.0, *)
-    internal init(centralState: CBManagerState) {
-        switch centralState {
-            case .poweredOn: self = .available
-            default: self = .unavailable(cause: BKUnavailabilityCause(centralState: centralState))
+    #if os(iOS) || os(tvOS)
+    @available(iOS 10.0, tvOS 10.0, *)
+    @available(OSX, unavailable)
+    internal init(managerState: CBManagerState) {
+        switch managerState {
+        case .poweredOn: self = .available
+        default: self = .unavailable(cause: BKUnavailabilityCause(managerState: managerState))
         }
     }
+    #endif
 
     internal init(centralManagerState: CBManagerState) {
         switch centralManagerState {
@@ -90,16 +93,19 @@ public enum BKUnavailabilityCause: ExpressibleByNilLiteral {
         self = .any
     }
 
-    @available(iOS 10.0, *)
-    internal init(centralState: CBManagerState) {
-        switch centralState {
-            case .poweredOff: self = .poweredOff
-            case .resetting: self = .resetting
-            case .unauthorized: self = .unauthorized
-            case .unsupported: self = .unsupported
-            default: self = nil
+    #if os(iOS) || os(tvOS)
+    @available(iOS 10.0, tvOS 10.0, *)
+    @available(OSX, unavailable)
+    internal init(managerState: CBManagerState) {
+        switch managerState {
+        case .poweredOff: self = .poweredOff
+        case .resetting: self = .resetting
+        case .unauthorized: self = .unauthorized
+        case .unsupported: self = .unsupported
+        default: self = nil
         }
     }
+    #endif
 
     internal init(centralManagerState: CBManagerState) {
         switch centralManagerState {

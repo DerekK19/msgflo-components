@@ -71,17 +71,20 @@ public class BKCentral: BKPeer, BKCBCentralManagerStateDelegate, BKConnectionPoo
     // MARK: Properties
 
     /// Bluetooth LE availability, derived from the underlying CBCentralManager.
-
     public var availability: BKAvailability? {
-        if let centralManager = _centralManager {
-            if #available(iOS 10.0, *) {
-                return BKAvailability(centralState: centralManager.state)
-            } else {
-                return BKAvailability(centralManagerState: CBManagerState(rawValue: centralManager.state.rawValue)!)
-            }
-        } else {
+        guard let centralManager = _centralManager else {
             return nil
         }
+            #if os(iOS) || os(tvOS)
+                if #available(tvOS 10.0, iOS 10.0, *) {
+                    return BKAvailability(managerState: centralManager.state)
+                } else {
+                    return BKAvailability(centralManagerState: centralManager.centralManagerState)
+                }
+            #else
+                return BKAvailability(centralManagerState: centralManager.state)
+            #endif
+
     }
 
     /// All currently connected remote peripherals.
@@ -339,13 +342,15 @@ public class BKCentral: BKPeer, BKCBCentralManagerStateDelegate, BKConnectionPoo
                 break
             case .unsupported, .unauthorized, .poweredOff:
                 let newCause: BKUnavailabilityCause
-
-                if #available(iOS 10.0, *) {
-                    newCause = BKUnavailabilityCause(centralState: central.state)
-                } else {
-                    newCause = BKUnavailabilityCause(centralManagerState: CBManagerState(rawValue: central.state.rawValue)!)
-                }
-
+                #if os(iOS) || os(tvOS)
+                    if #available(iOS 10.0, tvOS 10.0, *) {
+                        newCause = BKUnavailabilityCause(managerState: central.state)
+                    } else {
+                        newCause = BKUnavailabilityCause(centralManagerState: central.centralManagerState)
+                    }
+                #else
+                    newCause = BKUnavailabilityCause(centralManagerState: central.state)
+                #endif
                 switch stateMachine.state {
                     case let .unavailable(cause):
                         let oldCause = cause
