@@ -73,17 +73,19 @@ public class BKRemotePeripheral: BKRemotePeer, BKCBPeripheralDelegate {
         }
         #if os(iOS) || os(tvOS)
         switch peripheral!.state {
-            case .disconnected: return .disconnected
-            case .connecting: return .connecting
-            case .connected: return .connected
-            case .disconnecting: return .disconnecting
+        case .disconnected: return .disconnected
+        case .connecting: return .connecting
+        case .connected: return .connected
+        case .disconnecting: return .disconnecting
+        @unknown default: fatalError("Unknown state for BKRemotePeripheral")
         }
         #else
         switch peripheral!.state {
-            case .disconnecting: return .disconnecting
-            case .disconnected: return .disconnected
-            case .connecting: return .connecting
-            case .connected: return .connected
+        case .disconnecting: return .disconnecting
+        case .disconnected: return .disconnected
+        case .connecting: return .connecting
+        case .connected: return .connected
+        @unknown default: fatalError("Unknown peripheral!.state for BKRemotePeripheral")
         }
         #endif
     }
@@ -182,6 +184,5 @@ public class BKRemotePeripheral: BKRemotePeer, BKCBPeripheralDelegate {
         }
         handleReceivedData(characteristic.value!)
     }
-
 
 }

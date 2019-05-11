@@ -67,8 +67,6 @@ public class BKPeripheral: BKPeer, BKCBPeripheralManagerDelegate, BKAvailability
         #endif
     }
 
-
-
     /// The configuration that the BKPeripheral object was started with.
     override public var configuration: BKPeripheralConfiguration? {
         return _configuration
@@ -82,7 +80,7 @@ public class BKPeripheral: BKPeer, BKCBPeripheralManagerDelegate, BKAvailability
 
     /// Currently connected remote centrals
     public var connectedRemoteCentrals: [BKRemoteCentral] {
-        return connectedRemotePeers.flatMap({
+        return connectedRemotePeers.compactMap({
             guard let remoteCentral = $0 as? BKRemoteCentral else {
                 return nil
             }
@@ -182,7 +180,7 @@ public class BKPeripheral: BKPeer, BKCBPeripheralManagerDelegate, BKAvailability
 
     private func handleDisconnectForRemoteCentral(_ remoteCentral: BKRemoteCentral) {
         failSendDataTasksForRemotePeer(remoteCentral)
-        connectedRemotePeers.remove(at: connectedRemotePeers.index(of: remoteCentral)!)
+        connectedRemotePeers.remove(at: connectedRemotePeers.firstIndex(of: remoteCentral)!)
         delegate?.peripheral(self, remoteCentralDidDisconnect: remoteCentral)
     }
 
@@ -204,26 +202,27 @@ public class BKPeripheral: BKPeer, BKCBPeripheralManagerDelegate, BKAvailability
                 newCause = BKUnavailabilityCause(peripheralManagerState: peripheralManager.state)
             #endif
             switch stateMachine.state {
-                case let .unavailable(cause):
-                    let oldCause = cause
-                    _ = try? stateMachine.handleEvent(event: .setUnavailable(cause: newCause))
-                    setUnavailable(oldCause, oldCause: newCause)
-                default:
-                    _ = try? stateMachine.handleEvent(event: .setUnavailable(cause: newCause))
-                    setUnavailable(newCause, oldCause: nil)
-                }
-            case .poweredOn:
-                let state = stateMachine.state
-                _ = try? stateMachine.handleEvent(event: .setAvailable)
-                switch state {
-                case .starting, .unavailable:
-                    setAvailable()
-                default:
-                    break
+            case let .unavailable(cause):
+                let oldCause = cause
+                _ = try? stateMachine.handleEvent(event: .setUnavailable(cause: newCause))
+                setUnavailable(oldCause, oldCause: newCause)
+            default:
+                _ = try? stateMachine.handleEvent(event: .setUnavailable(cause: newCause))
+                setUnavailable(newCause, oldCause: nil)
             }
+        case .poweredOn:
+            let state = stateMachine.state
+            _ = try? stateMachine.handleEvent(event: .setAvailable)
+            switch state {
+            case .starting, .unavailable:
+                setAvailable()
+            default:
+                break
+            }
+        default:
+            break
         }
     }
-
 
     internal func peripheralManagerDidStartAdvertising(_ peripheral: CBPeripheralManager, error: Error?) {
 

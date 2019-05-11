@@ -107,7 +107,7 @@ public class BKCentral: BKPeer, BKCBCentralManagerStateDelegate, BKConnectionPoo
             return connectedRemotePeripherals
         }
         set {
-            connectionPool.connectedRemotePeripherals = newValue.flatMap({
+            connectionPool.connectedRemotePeripherals = newValue.compactMap({
                 guard let remotePeripheral = $0 as? BKRemotePeripheral else {
                     return nil
                 }
@@ -335,43 +335,44 @@ public class BKCentral: BKPeer, BKCBCentralManagerStateDelegate, BKConnectionPoo
 
     // MARK: BKCBCentralManagerStateDelegate
 
-
     internal func centralManagerDidUpdateState(_ central: CBCentralManager) {
         switch central.state {
-            case .unknown, .resetting:
-                break
-            case .unsupported, .unauthorized, .poweredOff:
-                let newCause: BKUnavailabilityCause
-                #if os(iOS) || os(tvOS)
-                    if #available(iOS 10.0, tvOS 10.0, *) {
-                        newCause = BKUnavailabilityCause(managerState: central.state)
-                    } else {
-                        newCause = BKUnavailabilityCause(centralManagerState: central.centralManagerState)
-                    }
-                #else
-                    newCause = BKUnavailabilityCause(centralManagerState: central.state)
-                #endif
-                switch stateMachine.state {
-                    case let .unavailable(cause):
-                        let oldCause = cause
-                        _ = try? stateMachine.handleEvent(.setUnavailable(cause: newCause))
-                        setUnavailable(oldCause, oldCause: newCause)
-                    default:
-                        _ = try? stateMachine.handleEvent(.setUnavailable(cause: newCause))
-                        setUnavailable(newCause, oldCause: nil)
+        case .unknown, .resetting:
+            break
+        case .unsupported, .unauthorized, .poweredOff:
+            let newCause: BKUnavailabilityCause
+            #if os(iOS) || os(tvOS)
+                if #available(iOS 10.0, tvOS 10.0, *) {
+                    newCause = BKUnavailabilityCause(managerState: central.state)
+                } else {
+                    newCause = BKUnavailabilityCause(centralManagerState: central.centralManagerState)
                 }
+            #else
+                newCause = BKUnavailabilityCause(centralManagerState: central.state)
+            #endif
+            switch stateMachine.state {
+            case let .unavailable(cause):
+                let oldCause = cause
+                _ = try? stateMachine.handleEvent(.setUnavailable(cause: newCause))
+                setUnavailable(oldCause, oldCause: newCause)
+            default:
+                _ = try? stateMachine.handleEvent(.setUnavailable(cause: newCause))
+                setUnavailable(newCause, oldCause: nil)
+            }
 
-            case .poweredOn:
-                let state = stateMachine.state
-                _ = try? stateMachine.handleEvent(.setAvailable)
-                switch state {
-                    case .starting, .unavailable:
-                        for availabilityObserver in availabilityObservers {
-                            availabilityObserver.availabilityObserver?.availabilityObserver(self, availabilityDidChange: .available)
-                        }
-                    default:
-                        break
+        case .poweredOn:
+            let state = stateMachine.state
+            _ = try? stateMachine.handleEvent(.setAvailable)
+            switch state {
+            case .starting, .unavailable:
+                for availabilityObserver in availabilityObservers {
+                    availabilityObserver.availabilityObserver?.availabilityObserver(self, availabilityDidChange: .available)
                 }
+            default:
+                break
+            }
+        default:
+            break
         }
     }
 

@@ -12,9 +12,7 @@ import CoreBluetooth
 extension CBCentralManager {
 
     internal var centralManagerState: CBManagerState {
-        get {
-            return CBManagerState(rawValue: state.rawValue) ?? .unknown
-        }
+        return CBManagerState(rawValue: state.rawValue) ?? .unknown
     }
 
 }
@@ -22,9 +20,7 @@ extension CBCentralManager {
 extension CBPeripheralManager {
 
     internal var peripheralManagerState: CBManagerState {
-        get {
-            return CBManagerState(rawValue: state.rawValue) ?? .unknown
-        }
+        return CBManagerState(rawValue: state.rawValue) ?? .unknown
     }
 
 }

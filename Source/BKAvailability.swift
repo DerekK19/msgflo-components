@@ -27,11 +27,11 @@ import CoreBluetooth
 
 public func == (lhs: BKAvailability, rhs: BKAvailability) -> Bool {
     switch (lhs, rhs) {
-        case (.available, .available): return true
-        case (.unavailable(cause: .any), .unavailable): return true
-        case (.unavailable, .unavailable(cause: .any)): return true
-        case (.unavailable(let lhsCause), .unavailable(let rhsCause)): return lhsCause == rhsCause
-        default: return false
+    case (.available, .available): return true
+    case (.unavailable(cause: .any), .unavailable): return true
+    case (.unavailable, .unavailable(cause: .any)): return true
+    case (.unavailable(let lhsCause), .unavailable(let rhsCause)): return lhsCause == rhsCause
+    default: return false
     }
 }
 
@@ -166,7 +166,7 @@ public extension BKAvailabilityObservable {
     */
     func removeAvailabilityObserver(_ availabilityObserver: BKAvailabilityObserver) {
         if availabilityObservers.contains(where: { $0.availabilityObserver === availabilityObserver }) {
-            availabilityObservers.remove(at: availabilityObservers.index(where: { $0 === availabilityObserver })!)
+            availabilityObservers.remove(at: availabilityObservers.firstIndex(where: { $0 === availabilityObserver })!)
         }
     }
 

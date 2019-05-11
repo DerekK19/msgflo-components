@@ -60,7 +60,7 @@ internal class BKContinousScanner {
         state = .stopped
     }
 
-    // MARK Internal Functions
+    // MARK: Internal Functions
 
     internal func scanContinuouslyWithChangeHandler(_ changeHandler: @escaping ChangeHandler, stateHandler: StateHandler? = nil, duration: TimeInterval = 3, inBetweenDelay: TimeInterval = 3, errorHandler: ErrorHandler?) {
         guard !busy else {
@@ -102,7 +102,7 @@ internal class BKContinousScanner {
                 let discoveriesToRemove = self.maintainedDiscoveries.filter({ !result!.contains($0) })
                 let changes = discoveriesToRemove.map({ BKDiscoveriesChange.remove(discovery: $0) })
                 for discoveryToRemove in discoveriesToRemove {
-                    self.maintainedDiscoveries.remove(at: self.maintainedDiscoveries.index(of: discoveryToRemove)!)
+                    self.maintainedDiscoveries.remove(at: self.maintainedDiscoveries.firstIndex(of: discoveryToRemove)!)
                 }
                 self.changeHandler?(changes, self.maintainedDiscoveries)
                 self.state = .waiting
