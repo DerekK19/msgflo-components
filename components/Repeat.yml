@@ -1,0 +1,13 @@
+component: msgflo-components/Repeat
+label: Repeat the input.
+icon: file-word-o
+inports:
+  in:
+    description: The input
+    type: any
+    queue: '#ROLE/in'
+outports:
+  out:
+    description: The output.
+    type: any
+    queue: '#ROLE/out'

@@ -7,15 +7,39 @@
   },
   "processes": {
     "repeater": {
-      "component": "Repeat",
-      "metadata": {}
+      "component": "msgflo-components/Reverse",
+      "metadata": {
+        "x": 0,
+        "y": 108,
+        "width": 72,
+        "height": 72,
+        "label": "repeater"
+      }
     },
     "reverser": {
-      "component": "Reverse",
-      "metadata": {}
+      "component": "msgflo-components/Reverse",
+      "metadata": {
+        "x": 144,
+        "y": 108,
+        "width": 72,
+        "height": 72,
+        "label": "reverser"
+      }
     }
   },
-  "connections": [],
+  "connections": [
+    {
+      "src": {
+        "process": "repeater",
+        "port": "out"
+      },
+      "tgt": {
+        "process": "reverser",
+        "port": "in"
+      },
+      "metadata": {}
+    }
+  ],
   "inports": [],
   "outports": []
 }

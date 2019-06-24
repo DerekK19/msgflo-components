@@ -7,9 +7,9 @@ catch e
 RepeatParticipant = (client, role) ->
 
   definition =
-    component: 'Repeat'
+    component: 'msgflo-components/Repeat'
     icon: 'file-word-o'
-    label: 'Repeats in data without changes'
+    label: 'Repeats indata without changes'
     inports: [
       id: 'in'
       type: 'any'

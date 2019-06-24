@@ -10,9 +10,9 @@ reverse = (s) ->
 ReverseParticipant = (client, role) ->
 
   definition =
-    component: 'Reverse'
+    component: 'msgflo-components/Reverse'
     icon: 'file-word-o'
-    label: 'Reverses in data string'
+    label: 'Reverses indata string'
     inports: [
       id: 'in'
       type: 'string'

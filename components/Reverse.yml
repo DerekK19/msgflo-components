@@ -1,0 +1,13 @@
+component: msgflo-components/Reverse
+label: Reverse the input.
+icon: file-word-o
+inports:
+  in:
+    description: The input
+    type: string
+    queue: '#ROLE/in'
+outports:
+  out:
+    description: The inpout reversed.
+    type: string
+    queue: '#ROLE/out'

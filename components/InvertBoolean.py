@@ -4,7 +4,7 @@ import msgflo
 class InvertBoolean(msgflo.Participant):
   def __init__(self, role):
     d = {
-      'component': 'msgflo-project/InvertBoolean',
+      'component': 'msgflo-components/InvertBoolean',
       'label': 'Invert a boolean value',
       'icon': 'star-o',
       'inports': [
