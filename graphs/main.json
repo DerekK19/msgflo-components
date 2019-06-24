@@ -1,0 +1,21 @@
+{
+  "properties": {
+    "name": "main",
+    "environment": {
+      "type": "msgflo"
+    }
+  },
+  "processes": {
+    "repeater": {
+      "component": "Repeat",
+      "metadata": {}
+    },
+    "reverser": {
+      "component": "Reverse",
+      "metadata": {}
+    }
+  },
+  "connections": [],
+  "inports": [],
+  "outports": []
+}

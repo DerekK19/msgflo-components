@@ -1,0 +1,10 @@
+{
+  "msgflo": {
+    "handlers": {
+      ".coffee": "msgflo-nodejs --name #ROLE #FILENAME"
+    },
+    "components": {
+      "Output": "noflo-runtime-msgflo --name out --graph core/Output --broker mqtt://pub_client:password@192.168.0.148"
+     }
+   }
+}
