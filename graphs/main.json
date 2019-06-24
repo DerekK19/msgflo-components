@@ -1,45 +1,67 @@
 {
-  "properties": {
-    "name": "main",
-    "environment": {
-      "type": "msgflo"
-    }
-  },
-  "processes": {
-    "repeater": {
-      "component": "msgflo-components/Reverse",
-      "metadata": {
-        "x": 0,
-        "y": 108,
-        "width": 72,
-        "height": 72,
-        "label": "repeater"
-      }
+    "caseSensitive": false,
+    "properties": {
+        "name": "main",
+        "environment": {
+            "type": "msgflo"
+        },
+        "description": "Foo Bar",
+        "icon": "cog"
     },
-    "reverser": {
-      "component": "msgflo-components/Reverse",
-      "metadata": {
-        "x": 144,
-        "y": 108,
-        "width": 72,
-        "height": 72,
-        "label": "reverser"
-      }
-    }
-  },
-  "connections": [
-    {
-      "src": {
-        "process": "repeater",
-        "port": "out"
-      },
-      "tgt": {
-        "process": "reverser",
-        "port": "in"
-      },
-      "metadata": {}
-    }
-  ],
-  "inports": [],
-  "outports": []
+    "inports": {},
+    "outports": {
+        "out": {
+            "process": "msgflo-components/Repeat_1n6a3",
+            "port": "out",
+            "metadata": {
+                "x": 252,
+                "y": 108,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "groups": [],
+    "processes": {
+        "msgflo-components/Repeat_1n6a3": {
+            "component": "msgflo-components/Repeat",
+            "metadata": {
+                "label": "Repeat",
+                "x": 108,
+                "y": 108,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "msgflo-components/Reverse_hlhnz": {
+            "component": "msgflo-components/Reverse",
+            "metadata": {
+                "label": "Reverse",
+                "x": -72,
+                "y": 108,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "connections": [
+        {
+            "src": {
+                "process": "msgflo-components/Reverse_hlhnz",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "msgflo-components/Repeat_1n6a3",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "data": "Hello World",
+            "tgt": {
+                "process": "msgflo-components/Reverse_hlhnz",
+                "port": "in"
+            }
+        }
+    ]
 }
