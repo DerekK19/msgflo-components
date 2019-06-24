@@ -5,8 +5,8 @@
         "environment": {
             "type": "msgflo"
         },
-        "description": "Foo Bar",
-        "icon": "cog"
+        "description": "Repeat revers and repeat",
+        "icon": "paste"
     },
     "inports": {
         "in": {
