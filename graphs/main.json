@@ -9,12 +9,22 @@
         "icon": "paste"
     },
     "inports": {
-        "in": {
-            "process": "msgflo-components/Repeat_ctoc4",
-            "port": "in",
+        "in2": {
+            "process": "msgflo-components/Add_8mpem",
+            "port": "in2",
             "metadata": {
                 "x": 36,
                 "y": 72,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "in": {
+            "process": "msgflo-components/Add_8mpem",
+            "port": "in",
+            "metadata": {
+                "x": 0,
+                "y": 36,
                 "width": 72,
                 "height": 72
             }
@@ -25,7 +35,7 @@
             "process": "msgflo-components/Repeat_1n6a3",
             "port": "out",
             "metadata": {
-                "x": 540,
+                "x": 648,
                 "y": 72,
                 "width": 72,
                 "height": 72
@@ -38,7 +48,7 @@
             "component": "msgflo-components/Repeat",
             "metadata": {
                 "label": "Repeat",
-                "x": 396,
+                "x": 540,
                 "y": 36,
                 "width": 72,
                 "height": 72
@@ -48,7 +58,7 @@
             "component": "msgflo-components/Reverse",
             "metadata": {
                 "label": "Reverse",
-                "x": 288,
+                "x": 396,
                 "y": 36,
                 "width": 72,
                 "height": 72
@@ -58,7 +68,17 @@
             "component": "msgflo-components/Repeat",
             "metadata": {
                 "label": "Repeat",
-                "x": 180,
+                "x": 288,
+                "y": 36,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "msgflo-components/Add_8mpem": {
+            "component": "msgflo-components/Add",
+            "metadata": {
+                "label": "Add",
+                "x": 144,
                 "y": 36,
                 "width": 72,
                 "height": 72
@@ -89,10 +109,28 @@
             "metadata": {}
         },
         {
+            "src": {
+                "process": "msgflo-components/Add_8mpem",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "msgflo-components/Repeat_ctoc4",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
             "data": "Hello Derek",
             "tgt": {
                 "process": "msgflo-components/Repeat_ctoc4",
                 "port": "in"
+            }
+        },
+        {
+            "data": 12,
+            "tgt": {
+                "process": "msgflo-components/Add_8mpem",
+                "port": "const"
             }
         }
     ]
