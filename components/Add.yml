@@ -1,0 +1,17 @@
+component: msgflo-components/Repeat
+label: Add the input.
+icon: file-cog-o
+inports:
+  in:
+    description: The input
+    type: number
+    queue: '#ROLE.IN'
+  in2:
+    description: The second input
+    type: number
+    queue: '#ROLE.IN2'
+outports:
+  out:
+    description: The output.
+    type: number
+    queue: '#ROLE.OUT'
