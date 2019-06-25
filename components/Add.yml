@@ -1,15 +1,15 @@
-component: msgflo-components/Repeat
-label: Add the input.
+component: msgflo-components/Add
+label: Add the inputs.
 icon: file-cog-o
 inports:
+  const:
+    description: The constant that will be added to
+    type: number
+    queue: '#ROLE.CONST'
   in:
     description: The input
     type: number
     queue: '#ROLE.IN'
-  in2:
-    description: The second input
-    type: number
-    queue: '#ROLE.IN2'
 outports:
   out:
     description: The output.

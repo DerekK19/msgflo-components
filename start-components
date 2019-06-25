@@ -31,5 +31,7 @@ echo $! > ./tmp/pids/Repeat_ctoc4.pid
 echo $! > ./tmp/pids/Repeat_1n6a3.pid
 ./node_modules/.bin/msgflo-nodejs --name msgflo-components/Reverse_hlhnz components/Reverse.coffee &
 echo $! > ./tmp/pids/Reverse_hlhnz.pid
+./node_modules/.bin/msgflo-nodejs --name msgflo-components/Add_8mpem components/Add.coffee &
+echo $! > ./tmp/pids/Add_8mpem.pid
 
 npm start
