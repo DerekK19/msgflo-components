@@ -35,8 +35,8 @@
       "NOFLO": "node ./node_modules/.bin/noflo-runtime-msgflo --name #ROLE --graph #COMPONENT  --cache true"
     },
     "components": {
-      "repeater/Repeat": "msgflo-register --role #ROLE:components/Repeat.yml",
-      "reverser/Reverse": "msgflo-register --role #ROLE:components/Reverse.yaml",
+      "msgflo-components/Repeat": "msgflo-register --role #ROLE:components/Repeat.yml",
+      "msgflo-components/Reverse": "msgflo-register --role #ROLE:components/Reverse.yaml",
       "core/Output": "#NOFLO"
     }
   }
