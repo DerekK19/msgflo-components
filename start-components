@@ -23,6 +23,8 @@
 #   rm -f ./tmp/pids/Reverse_hlhnz.pid
 # fi
 
+export MSGFLO_BROKER="mqtt://pub_client:password@192.168.0.148"
+
 ./node_modules/.bin/msgflo-nodejs --name msgflo-components/Repeat_ctoc4 components/Repeat.coffee &
 echo $! > ./tmp/pids/Repeat_ctoc4.pid
 ./node_modules/.bin/msgflo-nodejs --name msgflo-components/Repeat_1n6a3 components/Repeat.coffee &
