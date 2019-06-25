@@ -1,0 +1,17 @@
+component: msgflo-components/Append
+label: Aappend to a string.
+icon: file-text-o
+inports:
+  const:
+    description: The string that will be appended to
+    type: string
+    queue: '#ROLE.CONST'
+  in:
+    description: The thing to be appended
+    type: any
+    queue: '#ROLE.IN'
+outports:
+  out:
+    description: The output.
+    type: string
+    queue: '#ROLE.OUT'

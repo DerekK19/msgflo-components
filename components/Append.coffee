@@ -11,10 +11,10 @@ Append = (client, role) ->
     icon: 'file-text-o'
     label: 'Append to a string'
     inports: [
-      id: 'in'
-      type: 'any',
       id: 'const'
-	  type: 'string'
+      type: 'string',
+      id: 'in'
+      type: 'any'
     ]
     outports: [
       id: 'out'
