@@ -9,22 +9,12 @@
         "icon": "paste"
     },
     "inports": {
-        "in2": {
-            "process": "msgflo-components/Add_8mpem",
-            "port": "in2",
-            "metadata": {
-                "x": 36,
-                "y": 36,
-                "width": 72,
-                "height": 72
-            }
-        },
         "in": {
-            "process": "msgflo-components/Add_8mpem",
+            "process": "msgflo-components/Add_hrfxc",
             "port": "in",
             "metadata": {
                 "x": 36,
-                "y": 144,
+                "y": 108,
                 "width": 72,
                 "height": 72
             }
@@ -64,21 +54,21 @@
                 "height": 72
             }
         },
-        "msgflo-components/Repeat_ctoc4": {
-            "component": "msgflo-components/Repeat",
+        "msgflo-components/Add_hrfxc": {
+            "component": "msgflo-components/Add",
             "metadata": {
-                "label": "Repeat",
-                "x": 288,
+                "label": "Add",
+                "x": 144,
                 "y": 36,
                 "width": 72,
                 "height": 72
             }
         },
-        "msgflo-components/Add_8mpem": {
-            "component": "msgflo-components/Add",
+        "msgflo-components/Append_y1cj5": {
+            "component": "msgflo-components/Append",
             "metadata": {
-                "label": "Add",
-                "x": 144,
+                "label": "Append",
+                "x": 288,
                 "y": 36,
                 "width": 72,
                 "height": 72
@@ -99,7 +89,7 @@
         },
         {
             "src": {
-                "process": "msgflo-components/Repeat_ctoc4",
+                "process": "msgflo-components/Append_y1cj5",
                 "port": "out"
             },
             "tgt": {
@@ -110,26 +100,26 @@
         },
         {
             "src": {
-                "process": "msgflo-components/Add_8mpem",
+                "process": "msgflo-components/Add_hrfxc",
                 "port": "out"
             },
             "tgt": {
-                "process": "msgflo-components/Repeat_ctoc4",
+                "process": "msgflo-components/Append_y1cj5",
                 "port": "in"
             },
             "metadata": {}
         },
         {
-            "data": "Hello Derek",
+            "data": "Hello Derek. Your number is",
             "tgt": {
-                "process": "msgflo-components/Repeat_ctoc4",
-                "port": "in"
+                "process": "msgflo-components/Append_y1cj5",
+                "port": "const"
             }
         },
         {
             "data": 12,
             "tgt": {
-                "process": "msgflo-components/Add_8mpem",
+                "process": "msgflo-components/Add_hrfxc",
                 "port": "const"
             }
         }
