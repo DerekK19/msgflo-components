@@ -5,9 +5,9 @@ inports:
   in:
     description: The input
     type: string
-    queue: '#ROLE/in'
+    queue: '#ROLE.IN'
 outports:
   out:
-    description: The inpout reversed.
+    description: The input reversed.
     type: string
-    queue: '#ROLE/out'
+    queue: '#ROLE.OUT'

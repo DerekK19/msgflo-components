@@ -5,9 +5,9 @@ inports:
   in:
     description: The input
     type: any
-    queue: '#ROLE/in'
+    queue: '#ROLE.IN'
 outports:
   out:
     description: The output.
     type: any
-    queue: '#ROLE/out'
+    queue: '#ROLE.OUT'

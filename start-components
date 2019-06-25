@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# It seems the nodejs components shut down when Ctrl-ing the script
+# So the following is not required
+# if [ -f './tmp/pids/Repeat_ctoc4.pid' ]; then
+#   Repeat_ctoc4_PID="$( cat ./tmp/pids/Repeat_ctoc4.pid )"
+#   echo "Stopping Repeat_ctoc4 component $Repeat_ctoc4_PID"
+#   kill -9 $Repeat_ctoc4_PID
+#   rm -f ./tmp/pids/Repeat_ctoc4.pid
+# fi
+#
+# if [ -f './tmp/pids/Repeat_1n6a3.pid' ]; then
+#   Repeat_1n6a3_PID="$( cat ./tmp/pids/Repeat_1n6a3.pid )"
+#   echo "Stopping Repeat_1n6a3 component $Repeat_1n6a3_PID"
+#   kill -9 $Repeat_1n6a3_PID
+#   rm -f ./tmp/pids/Repeat_1n6a3.pid
+# fi
+#
+# if [ -f './tmp/pids/Reverse_hlhnz.pid' ]; then
+#   Repeat_ctoc4_PID="$( cat ./tmp/pids/Reverse_hlhnz.pid )"
+#   echo "Stopping Reverse_hlhnz component $Reverse_hlhnz_PID"
+#   kill -9 $Reverse_hlhnz_PID
+#   rm -f ./tmp/pids/Reverse_hlhnz.pid
+# fi
+
+./node_modules/.bin/msgflo-nodejs --name msgflo-components/Repeat_ctoc4 components/Repeat.coffee &
+echo $! > ./tmp/pids/Repeat_ctoc4.pid
+./node_modules/.bin/msgflo-nodejs --name msgflo-components/Repeat_1n6a3 components/Repeat.coffee &
+echo $! > ./tmp/pids/Repeat_1n6a3.pid
+./node_modules/.bin/msgflo-nodejs --name msgflo-components/Reverse_hlhnz components/Reverse.coffee &
+echo $! > ./tmp/pids/Reverse_hlhnz.pid
+
+npm start
