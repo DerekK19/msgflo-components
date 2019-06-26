@@ -1,40 +1,45 @@
 #!/bin/bash
+# Start the components needed by msgflo, then start the package including the specified graph
 
-# It seems the nodejs components shut down when Ctrl-ing the script
-# So the following is not required
-# if [ -f './tmp/pids/Repeat_ctoc4.pid' ]; then
-#   Repeat_ctoc4_PID="$( cat ./tmp/pids/Repeat_ctoc4.pid )"
-#   echo "Stopping Repeat_ctoc4 component $Repeat_ctoc4_PID"
-#   kill -9 $Repeat_ctoc4_PID
-#   rm -f ./tmp/pids/Repeat_ctoc4.pid
-# fi
-#
-# if [ -f './tmp/pids/Repeat_1n6a3.pid' ]; then
-#   Repeat_1n6a3_PID="$( cat ./tmp/pids/Repeat_1n6a3.pid )"
-#   echo "Stopping Repeat_1n6a3 component $Repeat_1n6a3_PID"
-#   kill -9 $Repeat_1n6a3_PID
-#   rm -f ./tmp/pids/Repeat_1n6a3.pid
-# fi
-#
-# if [ -f './tmp/pids/Reverse_hlhnz.pid' ]; then
-#   Repeat_ctoc4_PID="$( cat ./tmp/pids/Reverse_hlhnz.pid )"
-#   echo "Stopping Reverse_hlhnz component $Reverse_hlhnz_PID"
-#   kill -9 $Reverse_hlhnz_PID
-#   rm -f ./tmp/pids/Reverse_hlhnz.pid
-# fi
+# Derek Knight
+# Jun 2019
+
+debug_flag='false'
+graph_file="graphs/main.json"
+verbose='false'
+print_usage() {
+  echo "Usage: '$0' -d -g <graph file>"
+  echo " Parameters"
+  echo "  -d              - Turn on debugging (default off)"
+  echo "  -g <graph file> - Specify the graph file to use (default graphs\main.json)"
+}
+
+while getopts 'dg:v' flag; do
+  case "${flag}" in
+    d) debug_flag='true' ;;
+    g) graph_file="${OPTARG}" ;;
+    v) verbose='true' ;;
+    *) print_usage
+       exit 1 ;;
+  esac
+done
+
+if [ ! -f "${graph_file}" ]; then
+  echo "Graph file '${graph_file}' not found"
+  exit 2
+fi
 
 export MSGFLO_BROKER="mqtt://pub_client:password@192.168.0.148"
+if [ ${debug_flag} == 'true' ]; then
+  export DEBUG="*"
+fi
+export GRAPH="tmp/main.json"
 
 ./node_modules/.bin/msgflo-nodejs --name msgflo-components/Repeat_1n6a3 components/Repeat.coffee &
 ./node_modules/.bin/msgflo-nodejs --name msgflo-components/Reverse_hlhnz components/Reverse.coffee &
 ./node_modules/.bin/msgflo-nodejs --name msgflo-components/Add_hrfxc components/Add.coffee &
 ./node_modules/.bin/msgflo-nodejs --name msgflo-components/Append_p0e67 components/Append.coffee &
 
-# export NAME="msgflo-components/Repeat_1n6a3"; export FILE="components/Repeat.coffee"; npm run component &
-# export NAME="msgflo-components/Reverse_hlhnz"; export FILE="components/Reverse.coffee"; npm run component &
-# export NAME="msgflo-components/Add_hrfxc"; export FILE="components/Add.coffee"; npm run component &
-# export NAME="msgflo-components/Append_p0e67"; export FILE="components/Append.coffee"; npm run component &
+cp ${graph_file} tmp/main.json
 
-cp graphs/main.json tmp/main.json
-export GRAPH="tmp/main.json"
 npm start
