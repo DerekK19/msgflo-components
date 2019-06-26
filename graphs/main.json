@@ -8,8 +8,30 @@
         "description": "Add, Append, Reverse and Repeat",
         "icon": "paste"
     },
-    "inports": {},
-    "outports": {},
+    "inports": {
+        "in": {
+            "process": "msgflo-components/Add_hrfxc",
+            "port": "in",
+            "metadata": {
+                "x": 0,
+                "y": 144,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "outports": {
+        "out": {
+            "process": "msgflo-components/Repeat_1n6a3",
+            "port": "out",
+            "metadata": {
+                "x": 684,
+                "y": 144,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
     "groups": [],
     "processes": {
         "msgflo-components/Add_hrfxc": {
