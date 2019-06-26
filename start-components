@@ -35,4 +35,6 @@ export MSGFLO_BROKER="mqtt://pub_client:password@192.168.0.148"
 # export NAME="msgflo-components/Add_hrfxc"; export FILE="components/Add.coffee"; npm run component &
 # export NAME="msgflo-components/Append_p0e67"; export FILE="components/Append.coffee"; npm run component &
 
+cp graphs/main.json tmp/main.json
+export GRAPH="tmp/main.json"
 npm start
