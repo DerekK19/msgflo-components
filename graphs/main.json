@@ -107,9 +107,7 @@
                 "process": "msgflo-components/Append_p0e67",
                 "port": "in"
             },
-            "metadata": {
-                "route": null
-            }
+            "metadata": {}
         },
         {
             "data": 12,

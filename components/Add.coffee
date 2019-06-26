@@ -24,6 +24,7 @@ AddParticipant = (client, role) ->
       type: 'any'
     ]
   process = (inport, indata, callback) ->
+    console.log "Add #{inport}: #{indata}"
     if inport == "in"
       return callback 'out', null, add(indata, 42)
     else

@@ -39,6 +39,7 @@
       "msgflo-components/Repeat": "msgflo-register --role #ROLE:components/Repeat.yml",
       "msgflo-components/Reverse": "msgflo-register --role #ROLE:components/Reverse.yml",
       "msgflo-components/Add": "msgflo-register --role #ROLE:components/Add.yml",
+      "msgflo-components/Append": "msgflo-register --role #ROLE:components/Append.yml",
       "core/Output": "#NOFLO"
     }
   }

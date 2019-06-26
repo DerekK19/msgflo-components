@@ -1,5 +1,5 @@
 component: msgflo-components/Append
-label: Aappend to a string.
+label: Append a string to another string.
 icon: file-text-o
 inports:
   const:
@@ -7,8 +7,8 @@ inports:
     type: string
     queue: '#ROLE.CONST'
   in:
-    description: The thing to be appended
-    type: any
+    description: The string to be appended
+    type: string
     queue: '#ROLE.IN'
 outports:
   out:

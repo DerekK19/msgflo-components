@@ -4,24 +4,24 @@ try
 catch e
   msgflo = require '..'
 
-Append = (client, role) ->
-
+AppendParticipant = (client, role) ->
   definition =
     component: 'msgflo-components/Append'
     icon: 'file-text-o'
-    label: 'Append to a string'
+    label: 'Append a string to a string'
     inports: [
       id: 'const'
       type: 'string',
       id: 'in'
-      type: 'any'
+      type: 'string'
     ]
     outports: [
       id: 'out'
-      type: 'any'
+      type: 'string'
     ]
   process = (inport, indata, callback) ->
+    console.log "Append #{inport}: #{indata}"
     return callback 'out', null, indata
   return new msgflo.participant.Participant client, definition, process, role
 
-module.exports = Append
+module.exports = AppendParticipant
