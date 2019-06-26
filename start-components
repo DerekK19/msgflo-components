@@ -35,11 +35,12 @@ if [ ${debug_flag} == 'true' ]; then
 fi
 export GRAPH="tmp/main.json"
 
-./node_modules/.bin/msgflo-nodejs --name msgflo-components/Repeat_1n6a3 components/Repeat.coffee &
-./node_modules/.bin/msgflo-nodejs --name msgflo-components/Reverse_hlhnz components/Reverse.coffee &
-./node_modules/.bin/msgflo-nodejs --name msgflo-components/Add_hrfxc components/Add.coffee &
-./node_modules/.bin/msgflo-nodejs --name msgflo-components/Append_p0e67 components/Append.coffee &
+rm -f ./tmp/debug.log
+cp ${graph_file} ./tmp/main.json
 
-cp ${graph_file} tmp/main.json
+./node_modules/.bin/msgflo-nodejs --name msgflo-components/Repeat_1n6a3 components/Repeat.coffee 2>> ./tmp/debug.log &
+./node_modules/.bin/msgflo-nodejs --name msgflo-components/Reverse_hlhnz components/Reverse.coffee 2>> ./tmp/debug.log &
+./node_modules/.bin/msgflo-nodejs --name msgflo-components/Add_hrfxc components/Add.coffee 2>> ./tmp/debug.log &
+./node_modules/.bin/msgflo-nodejs --name msgflo-components/Append_p0e67 components/Append.coffee 2>> ./tmp/debug.log &
 
-npm start
+npm start 2>> ./tmp/debug.log
