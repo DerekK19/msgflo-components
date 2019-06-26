@@ -4,8 +4,9 @@ try
 catch e
   msgflo = require '..'
 
-add = (x, y) ->
-  x + y
+add_constant = 21
+add = (x) ->
+  add_constant+x
 
 AddParticipant = (client, role) ->
 
@@ -21,12 +22,15 @@ AddParticipant = (client, role) ->
     ]
     outports: [
       id: 'out'
-      type: 'any'
+      type: 'number'
     ]
   process = (inport, indata, callback) ->
     console.log "Add #{inport}: #{indata}"
     if inport == "in"
-      return callback 'out', null, add(indata, 42)
+      return callback 'out', null, add(indata)
+    else if inport == "const"
+      add_constant = indata
+      return callback 'out', null, indata
     else
       return callback 'out', null, indata
   return new msgflo.participant.Participant client, definition, process, role
