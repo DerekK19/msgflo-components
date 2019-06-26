@@ -64,7 +64,7 @@
                 "height": 72
             }
         },
-        "msgflo-components/Append_y1cj5": {
+        "msgflo-components/Append_p0e67": {
             "component": "msgflo-components/Append",
             "metadata": {
                 "label": "Append",
@@ -89,7 +89,7 @@
         },
         {
             "src": {
-                "process": "msgflo-components/Append_y1cj5",
+                "process": "msgflo-components/Append_p0e67",
                 "port": "out"
             },
             "tgt": {
@@ -104,22 +104,24 @@
                 "port": "out"
             },
             "tgt": {
-                "process": "msgflo-components/Append_y1cj5",
+                "process": "msgflo-components/Append_p0e67",
                 "port": "in"
             },
-            "metadata": {}
-        },
-        {
-            "data": "Hello Derek. Your number is",
-            "tgt": {
-                "process": "msgflo-components/Append_y1cj5",
-                "port": "const"
+            "metadata": {
+                "route": null
             }
         },
         {
             "data": 12,
             "tgt": {
                 "process": "msgflo-components/Add_hrfxc",
+                "port": "const"
+            }
+        },
+        {
+            "data": "Hello Derek. Your number is",
+            "tgt": {
+                "process": "msgflo-components/Append_p0e67",
                 "port": "const"
             }
         }
