@@ -25,16 +25,14 @@
 
 export MSGFLO_BROKER="mqtt://pub_client:password@192.168.0.148"
 
-./node_modules/.bin/msgflo-nodejs --name msgflo-components/Repeat_ctoc4 components/Repeat.coffee &
 ./node_modules/.bin/msgflo-nodejs --name msgflo-components/Repeat_1n6a3 components/Repeat.coffee &
 ./node_modules/.bin/msgflo-nodejs --name msgflo-components/Reverse_hlhnz components/Reverse.coffee &
-./node_modules/.bin/msgflo-nodejs --name msgflo-components/Add_8mpem components/Add.coffee &
+./node_modules/.bin/msgflo-nodejs --name msgflo-components/Add_hrfxc components/Add.coffee &
 ./node_modules/.bin/msgflo-nodejs --name msgflo-components/Append_p0e67 components/Append.coffee &
 
-# export NAME="msgflo-components/Repeat_ctoc4"; export FILE="components/Repeat.coffee"; npm run component &
 # export NAME="msgflo-components/Repeat_1n6a3"; export FILE="components/Repeat.coffee"; npm run component &
 # export NAME="msgflo-components/Reverse_hlhnz"; export FILE="components/Reverse.coffee"; npm run component &
-# export NAME="msgflo-components/Add_8mpem"; export FILE="components/Add.coffee"; npm run component &
+# export NAME="msgflo-components/Add_hrfxc"; export FILE="components/Add.coffee"; npm run component &
 # export NAME="msgflo-components/Append_p0e67"; export FILE="components/Append.coffee"; npm run component &
 
 npm start
