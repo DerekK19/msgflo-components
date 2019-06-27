@@ -114,7 +114,7 @@
             }
         },
         {
-            "data": "Hello Derek. Your number is",
+            "data": "Hello Derek. Your number is ",
             "tgt": {
                 "process": "msgflo-components/Append_p0e67",
                 "port": "const"
