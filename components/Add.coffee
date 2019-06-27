@@ -14,12 +14,7 @@ AddParticipant = (client, role) ->
     component: 'msgflo-components/Repeat'
     icon: 'file-word-o'
     label: 'Add two inputs to make an output'
-    inports: [
-      id: 'const'
-      type: 'number',
-      id: 'in'
-      type: 'number'
-    ]
+    inports: [{ id: 'const', type: 'number'}, { id: 'in', type: 'number' }]
     outports: [
       id: 'out'
       type: 'number'

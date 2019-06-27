@@ -13,12 +13,7 @@ AppendParticipant = (client, role) ->
     component: 'msgflo-components/Append'
     icon: 'file-text-o'
     label: 'Append a string to a string'
-    inports: [
-      id: 'const'
-      type: 'string',
-      id: 'in'
-      type: 'string'
-    ]
+    inports: [{ id: 'const', type: 'string'}, { id: 'in', type: 'string' }]
     outports: [
       id: 'out'
       type: 'string'
@@ -26,7 +21,7 @@ AppendParticipant = (client, role) ->
   process = (inport, indata, callback) ->
     console.log "Append #{inport}: #{indata}"
     if inport == "in"
-      return callback 'out', null, append(indata)
+      return callback 'out', null, append(" #{indata}")
     else if inport == "const"
       append_constant = indata
       return callback 'out', null, indata
