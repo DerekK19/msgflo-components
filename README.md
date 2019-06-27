@@ -1,7 +1,7 @@
-msgflo-project [![Greenkeeper badge](https://badges.greenkeeper.io/msgflo/msgflo-project.svg)](https://greenkeeper.io/) [![Build Status](https://travis-ci.org/msgflo/msgflo-project.svg?branch=master)](https://travis-ci.org/msgflo/msgflo-project) [![Docker Hub x86](https://img.shields.io/docker/pulls/msgflo/msgflo-project.svg)](https://hub.docker.com/r/msgflo/msgflo-project/) [![Docker Hub Raspberry Pi3](https://img.shields.io/docker/pulls/msgflo/raspberrypi3-msgflo-project.svg)](https://hub.docker.com/r/msgflo/msgflo-project/)
+msgflo-components [![Greenkeeper badge](https://badges.greenkeeper.io/msgflo/msgflo-project.svg)](https://greenkeeper.io/) [![Build Status](https://travis-ci.org/msgflo/msgflo-project.svg?branch=master)](https://travis-ci.org/msgflo/msgflo-project) [![Docker Hub x86](https://img.shields.io/docker/pulls/msgflo/msgflo-project.svg)](https://hub.docker.com/r/msgflo/msgflo-project/) [![Docker Hub Raspberry Pi3](https://img.shields.io/docker/pulls/msgflo/raspberrypi3-msgflo-project.svg)](https://hub.docker.com/r/msgflo/msgflo-project/)
 ==============
 
-This repository provides a template for creating and running new [MsgFlo](https://msgflo.org) projects.
+This repository provides a number of useful [MsgFlo](https://msgflo.org) components.
 
 ## Features
 
@@ -23,9 +23,11 @@ You can use this template for development both with a direct installation or wit
 * Install and start a [Mosquitto](https://mosquitto.org/) message broker
 * Install the Node.js dependencies of this project with `npm install`
 * Install the Python 3 dependencies of this project with `pip3 install -r requirements.txt`
+* Start any components the graph requires with for example `msgflo-nodejs --name msgflo-components/Repeat_1n6a3 components/Repeat.coffee`
 * Start the MsgFlo broker with `MSGFLO_BROKER=mqtt://localhost npm start`
+* Or use the start-components bash script - adjusting the MSGFLO_BROKER to suit your installation
 
-### Running with Docker
+### Running with Docker (Not tested, this comment left over from msgflo-project)
 
 * Ensure you have a running Docker daemon
 * Start the project with `docker-compose up` (use `docker-compose-raspberrypi3.yml` file if you want to run on RPi3)
@@ -42,6 +44,8 @@ Once you've installed and started the service either locally or with Docker, ope
 
 You should see an empty graph. Click _Edit as project_ to start hacking!
 
+Or load the example graph from graphs/main.json
+
 Use Flowhub's [GitHub synchronization](https://docs.flowhub.io/github-integration/) feature to push your graph and component changes to your repository.
 
 ## Test automation
@@ -53,4 +57,4 @@ Use Flowhub's [GitHub synchronization](https://docs.flowhub.io/github-integratio
 ## Changes
 
 * 1.0.0 (git master)
-  - Switched from Python 2 to Python 3
+  - Initial version, used msgflo-project as a base
