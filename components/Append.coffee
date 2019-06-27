@@ -19,7 +19,7 @@ AppendParticipant = (client, role) ->
       type: 'string'
     ]
   process = (inport, indata, callback) ->
-    console.log "Append #{inport}: #{indata}"
+    # console.log "Append #{inport}: #{indata}"
     if inport == "in"
       return callback 'out', null, append(" #{indata}")
     else if inport == "const"
