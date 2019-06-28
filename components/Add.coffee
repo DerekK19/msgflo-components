@@ -11,8 +11,8 @@ add = (x) ->
 AddParticipant = (client, role) ->
 
   definition =
-    component: 'msgflo-components/Repeat'
-    icon: 'file-word-o'
+    component: 'msgflo-components/Add'
+    icon: 'cog'
     label: 'Add two inputs to make an output'
     inports: [{ id: 'const', type: 'number'}, { id: 'in', type: 'number' }]
     outports: [
