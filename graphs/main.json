@@ -5,16 +5,15 @@
         "environment": {
             "type": "msgflo"
         },
-        "description": "Add, Append, Reverse and Repeat",
-        "icon": "paste"
+        "icon": "cog"
     },
     "inports": {
         "in": {
-            "process": "msgflo-components/Add_hrfxc",
+            "process": "repeater",
             "port": "in",
             "metadata": {
-                "x": 0,
-                "y": 144,
+                "x": 36,
+                "y": 72,
                 "width": 72,
                 "height": 72
             }
@@ -22,11 +21,11 @@
     },
     "outports": {
         "out": {
-            "process": "msgflo-components/Repeat_1n6a3",
+            "process": "reverser",
             "port": "out",
             "metadata": {
-                "x": 684,
-                "y": 144,
+                "x": 396,
+                "y": 72,
                 "width": 72,
                 "height": 72
             }
@@ -34,91 +33,38 @@
     },
     "groups": [],
     "processes": {
-        "msgflo-components/Add_hrfxc": {
-            "component": "msgflo-components/Add",
+        "repeater": {
+            "component": "msgflo-components/Repeat",
             "metadata": {
-                "label": "Add",
                 "x": 144,
                 "y": 36,
                 "width": 72,
-                "height": 72
+                "height": 72,
+                "label": "repeater"
             }
         },
-        "msgflo-components/Append_p0e67": {
-            "component": "msgflo-components/Append",
+        "reverser": {
+            "component": "msgflo-components/Reverse",
             "metadata": {
-                "label": "Append",
                 "x": 288,
                 "y": 36,
                 "width": 72,
-                "height": 72
-            }
-        },
-        "msgflo-components/Reverse_hlhnz": {
-            "component": "msgflo-components/Reverse",
-            "metadata": {
-                "label": "Reverse",
-                "x": 396,
-                "y": 36,
-                "width": 72,
-                "height": 72
-            }
-        },
-        "msgflo-components/Repeat_1n6a3": {
-            "component": "msgflo-components/Repeat",
-            "metadata": {
-                "label": "Repeat",
-                "x": 540,
-                "y": 36,
-                "width": 72,
-                "height": 72
+                "height": 72,
+                "label": "reverser"
             }
         }
     },
     "connections": [
         {
             "src": {
-                "process": "msgflo-components/Add_hrfxc",
+                "process": "repeater",
                 "port": "out"
             },
             "tgt": {
-                "process": "msgflo-components/Append_p0e67",
+                "process": "reverser",
                 "port": "in"
-            }
-        },
-        {
-            "src": {
-                "process": "msgflo-components/Append_p0e67",
-                "port": "out"
             },
-            "tgt": {
-                "process": "msgflo-components/Reverse_hlhnz",
-                "port": "in"
-            }
-        },
-        {
-            "src": {
-                "process": "msgflo-components/Reverse_hlhnz",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "msgflo-components/Repeat_1n6a3",
-                "port": "in"
-            }
-        },
-        {
-            "data": 12,
-            "tgt": {
-                "process": "msgflo-components/Add_hrfxc",
-                "port": "const"
-            }
-        },
-        {
-            "data": "Hello Derek. Your number is ",
-            "tgt": {
-                "process": "msgflo-components/Append_p0e67",
-                "port": "const"
-            }
+            "metadata": {}
         }
     ]
 }
