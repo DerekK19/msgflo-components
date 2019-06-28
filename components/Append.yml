@@ -1,6 +1,6 @@
 component: msgflo-components/Append
 label: Append a string to another string.
-icon: file-text-o
+icon: file-alt-o
 inports:
   const:
     description: The string that will be appended to

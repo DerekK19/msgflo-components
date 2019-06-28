@@ -1,6 +1,6 @@
 component: msgflo-components/Add
 label: Add the inputs.
-icon: file-cog-o
+icon: cog
 inports:
   const:
     description: The constant that will be added to

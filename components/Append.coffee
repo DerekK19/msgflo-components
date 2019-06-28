@@ -11,7 +11,7 @@ append = (str) ->
 AppendParticipant = (client, role) ->
   definition =
     component: 'msgflo-components/Append'
-    icon: 'file-text-o'
+    icon: 'file-alt-o'
     label: 'Append a string to a string'
     inports: [{ id: 'const', type: 'string'}, { id: 'in', type: 'string' }]
     outports: [
