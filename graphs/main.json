@@ -49,7 +49,7 @@
             "metadata": {
                 "label": "Append",
                 "x": 288,
-                "y": 36,
+                "y": 144,
                 "width": 72,
                 "height": 72
             }
@@ -59,7 +59,7 @@
             "metadata": {
                 "label": "Reverse",
                 "x": 396,
-                "y": 36,
+                "y": 144,
                 "width": 72,
                 "height": 72
             }

@@ -6,6 +6,7 @@
   "scripts": {
     "test": "mocha  --reporter spec spec/*.js",
     "start": "./node_modules/.bin/msgflo --graph ${GRAPH:-graphs/main.json} --auto-save=false --runtime-id=e9c9fca9-c378-437b-98e4-97b556edbec1 --ping-interval=600 --componentdir components",
+    "stop": "",
     "component": "./node_modules/.bin/msgflo-nodejs --name $NAME $FILE"
   },
   "repository": {
