@@ -21,6 +21,7 @@ print_usage() {
   echo "Usage: '$0' -d -g <graph file>"
   echo " Parameters"
   echo "  -d              - Turn on debugging (default off)"
+  echo "  -v              - Turn on verbose mode (default off)"
   echo "  -g <graph file> - Specify the graph file to use (default graphs\main.json)"
 }
 
@@ -58,16 +59,25 @@ else
     filename=$(basename -- "$file")
     ext="${filename##*.}"
     stem="${filename%.*}"
+    if [ ${verbose}  == 'true' ]; then
+      echo "reguister component/${stem}:components/${stem}.yml"
+    fi
     msgflo-register --role component/${stem}:components/${stem}.yml 2>> ${debug_file} &
   done
 
   # Parse the graph for any components used
-  processes=`ruby ./parse_components.rb ${graph_file}`
+  # processes=`ruby ./parse_components.rb ${graph_file}`
+  processes=`jq < ${graph_file} '.processes | to_entries | map_values (.value + { kye: .key } )[] | "--" + .kye + " " + .component + ".coffee"'`
 
   # Start the components
   IFS_BAK=$IFS
   IFS=$'\n'
   for process in $processes; do
+    process="${process%\"}"
+    process="${process#\"}"
+    if [ ${verbose}  == 'true' ]; then
+      echo "nodejs ${process}"
+    fi
     eval "msgflo-nodejs ${process} 2>> ${debug_file}" &
   done
   IFS=$IFS_BAK
