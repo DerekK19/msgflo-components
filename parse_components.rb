@@ -1,4 +1,4 @@
-# Parse thge specificed JSON file and get the list of processes
+# Parse the specificed JSON file and get the list of processes
 # Scan the processes to get the component name
 # Append .coffee to the component name and change the folder name from msgflo-components to components
 # msgflo-components is the name in the msgflo world, components is the folder on disk
@@ -17,5 +17,5 @@ processes.each do | key, value |
   component = value['component']
   implementation = "#{component}.coffee".sub! 'msgflo-components', 'components'
 
-  puts "./node_modules/.bin/msgflo-nodejs --name #{key} #{implementation}"
+  puts " --name #{key} #{implementation}"
 end

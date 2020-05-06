@@ -4,10 +4,19 @@
 # Derek Knight
 # Jun 2019
 
+# Setting MSGFLO_SETUP to true will use the msgflo_setup program to start the components,
+# However this has the disadvantage that the components will not be stopped on repeated runs
+
+# Using msgflo_nodejs to start the components does not have this limitation.
+# Just using Control-C to stop the running npm process will shut down the components
+
+MSGFLO_SETUP='false'
+
 debug_flag='false'
 debug_file="tmp/debug.log"
 graph_file="graphs/main.json"
 verbose='false'
+
 print_usage() {
   echo "Usage: '$0' -d -g <graph file>"
   echo " Parameters"
@@ -30,6 +39,7 @@ if [ ! -f "${graph_file}" ]; then
   exit 2
 fi
 
+export PATH=./node_modules/.bin:$PATH
 export MSGFLO_BROKER="mqtt://pub_client:password@mqttserver"
 export GRAPH="tmp/main.json"
 if [ ${debug_flag} == 'true' ]; then
@@ -39,16 +49,31 @@ fi
 rm -f ${debug_file}
 cp ${graph_file} ./tmp/main.json
 
-processes=`ruby ./parse_components.rb ${graph_file}`
+if [ ${MSGFLO_SETUP} == 'true' ]; then
+  msgflo-setup ${graph_file} --componentdir ./components --participants
+else
 
-IFS_BAK=$IFS
-IFS=$'\n'
-for process in $processes; do
-  eval $process 2>> ${debug_file} &
-done
-IFS=$IFS_BAK
-IFS_BAK=
+  # Register all available components. Give them a role that starts with component/
+  for file in ./components/*.yml; do
+    filename=$(basename -- "$file")
+    ext="${filename##*.}"
+    stem="${filename%.*}"
+    msgflo-register --role component/${stem}:components/${stem}.yml 2>> ${debug_file} &
+  done
 
-# Start npm, which will start msgflo and will register the components.
-# Leave this running in the foreground. stop with Control-C, and that will also stop the components
-npm start 2>> ${debug_file}
+  # Parse the graph for any components used
+  processes=`ruby ./parse_components.rb ${graph_file}`
+
+  # Start the components
+  IFS_BAK=$IFS
+  IFS=$'\n'
+  for process in $processes; do
+    eval "msgflo-nodejs ${process} 2>> ${debug_file}" &
+  done
+  IFS=$IFS_BAK
+  IFS_BAK=
+
+  # Start npm, which will start msgflo and will register the components.
+  # Leave this running in the foreground. stop with Control-C, and that will also stop the components
+  npm start 2>> ${debug_file}
+fi

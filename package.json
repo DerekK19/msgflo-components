@@ -36,10 +36,14 @@
     "variables": {
       "NOFLO": "node ./node_modules/.bin/noflo-runtime-msgflo --name #ROLE --graph #COMPONENT  --cache true"
     },
+    "handlers": {
+      ".coffee": "msgflo-nodejs --name #ROLE #FILENAME"
+    },
     "components": {
       "msgflo-components/Repeat": "msgflo-register --role #ROLE:components/Repeat.yml",
       "msgflo-components/Reverse": "msgflo-register --role #ROLE:components/Reverse.yml",
       "msgflo-components/Add": "msgflo-register --role #ROLE:components/Add.yml",
+      "msgflo-components/Subtract": "msgflo-register --role #ROLE:components/Subtract.yml",
       "msgflo-components/Append": "msgflo-register --role #ROLE:components/Append.yml",
       "core/Output": "#NOFLO"
     }

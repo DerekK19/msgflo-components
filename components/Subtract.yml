@@ -1,0 +1,17 @@
+component: msgflo-components/Subtract
+label: Subtracts the inputs.
+icon: cog
+inports:
+  const:
+    description: The constant that will be subtracted from
+    type: number
+    queue: '#ROLE.CONST'
+  in:
+    description: The input
+    type: number
+    queue: '#ROLE.IN'
+outports:
+  out:
+    description: The output.
+    type: number
+    queue: '#ROLE.OUT'
